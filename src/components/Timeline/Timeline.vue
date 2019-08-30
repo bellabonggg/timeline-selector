@@ -1,20 +1,47 @@
 <template>
-    <div class="swiper-container">
-        <p class="swiper-control">
-          <button type="button" class="btn btn-default btn-sm prev-slide">Prev</button>
-          <button type="button" class="btn btn-default btn-sm next-slide">Next</button>
-        </p>
-        <div class="swiper-wrapper timeline">
-          <div class="swiper-slide" v-for="item in steps">
-            <div class="timestamp">
-              <span class="date">{{item.dateLabel}}<span>
-            </div>
-            <div class="status">
-              <span>{{item.title}}</span>
-            </div>
-          </div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-      </div>
+  <div class="timeline-wrapper">
+    <h1> test </h1>
+    <div class="timeline-line">
+      <slot class="timeline-slot" />
+    </div>
+  </div>
 </template>
+
+<script>
+export default {
+  props: {
+    itemPerView: {
+      type: Number,
+      default: 10
+    },
+    styles: {
+      type: Object,
+      default: () => ({})
+    }
+  }
+}
+</script>
+
+<style scoped>
+.timeline-wrapper {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid burlywood;
+  padding: 20px;
+}
+.timeline-line {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  border: 1px solid burlywood;
+  margin: 10px;
+}
+.timeline-line:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  border-top: 2px solid darkcyan;
+  width: 100%;
+  z-index: -10;
+}
+</style>
